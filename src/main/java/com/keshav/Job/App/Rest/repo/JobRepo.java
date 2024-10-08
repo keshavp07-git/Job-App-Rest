@@ -15,15 +15,29 @@ public class JobRepo {
     ));
 
 
-    public List<JobPost> getAllJobs(){
+    public List<JobPost> getAllJobs() {
         return jobs;
     }
-    public void addJob(JobPost job){
+
+    public void addJob(JobPost job) {
         jobs.add(job);
         System.out.println(jobs);
     }
-    private List<String>convertStringToList(String techStack){
+
+    private List<String> convertStringToList(String techStack) {
         return Arrays.asList(techStack.split("//s*,//s*"));
     }
+    // This logic created to accept request service and as per service
+    // a loop run and it get path passed value in repo or data model it will give data .
+
+    public JobPost getJob(int postId) {
+        for (JobPost job : jobs){
+            if (job.getPostId() == postId)
+                return job;
+        }
+        return null;
     }
+}
+
+
 

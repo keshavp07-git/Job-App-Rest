@@ -20,7 +20,10 @@ public class JobService {
     }
     public List<JobPost> getAllJob (){
         return repo.getAllJobs();
-
-
     }
+
+    public JobPost getPost(int postId){
+        return repo.getJob(postId);
+    } // This logic is created to return a single post means a single data
+    // from data model but it accepts int value which we will pass in path
 }
