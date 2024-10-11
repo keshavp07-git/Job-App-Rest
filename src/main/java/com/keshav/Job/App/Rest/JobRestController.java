@@ -33,6 +33,16 @@ public class JobRestController {
         service.addJob(jobPost); // Here we call service with addJob method and pass that object which all client data (jobPost).
         return service.getPost(jobPost.getPostId()); // here we also return service with getPost method which use jobPost method to give job and also
         // use getPostId method to get proper input in Postman console that what we input.
+    }
 
+    @PutMapping("jobPosts") // PutMapping for update
+    public JobPost updateJob(@RequestBody JobPost jobPost){ // Method created and store value as object.
+      service.updateJob(jobPost); // now call update method to insert data as object. in repo
+      return service.getPost(jobPost.getPostId()); //return the values which we changed with method it will show on console of postman
+    };
+    @DeleteMapping("jobPosts/{postId}")// Delete mapping is for accept delete request
+    public String deleteJob(@PathVariable int postId){ //created a String method which return string if our service or repo method work properly,
+        service.deleteJob(postId); //it calls the service with of postID which will be integer.
+        return "Deleted"; //here the message return.
     }
 }

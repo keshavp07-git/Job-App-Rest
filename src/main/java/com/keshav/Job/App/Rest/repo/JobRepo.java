@@ -37,6 +37,29 @@ public class JobRepo {
         }
         return null;
     }
+
+    public void updateJob(JobPost jobPost) {
+        for (JobPost jobPost1 : jobs){ // iterate the Job from Jobs if both are equal then set another value
+            // which we will pass through JSON file from Postman
+            // iterated variable jobPost1 PostId and JobPost PostId equal then do operations
+            if(jobPost1.getPostId()==jobPost.getPostId()){
+                jobPost1.setPostDesc(jobPost.getPostDesc());
+                jobPost1.setPostProfile(jobPost.getPostProfile());
+                jobPost1.setPostTechStack(jobPost.getPostTechStack());
+                jobPost1.setReqExperience(jobPost.getReqExperience());
+            }
+        }
+    }
+
+    public void deleteJob(int postId) { //Here method create which take int value which will postId
+        // We iterate in a variable if postId from repo and that we entered in postman is same then remove
+        // that job using the postId which we entered in URL
+        for (JobPost job : jobs){
+            if(job.getPostId() == postId){
+                jobs.remove(postId);
+            }
+        }
+    }
 }
 
 
