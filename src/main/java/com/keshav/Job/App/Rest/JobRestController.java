@@ -26,4 +26,13 @@ public class JobRestController {
     public JobPost getJob(@PathVariable("postId")int postId){ //@PathVariable will help to accept value which we define in path and then service/repo(data)/return (Postman).
         return service.getPost(postId);
     }
+
+    @PostMapping("jobPosts") // We use @PostMapping to get data from client
+    public JobPost addPost(@RequestBody JobPost jobPost ){ // Create controller for addJob method
+        // with @RequestBody it stores client data into object that we created here JobPost and object jobPost.
+        service.addJob(jobPost); // Here we call service with addJob method and pass that object which all client data (jobPost).
+        return service.getPost(jobPost.getPostId()); // here we also return service with getPost method which use jobPost method to give job and also
+        // use getPostId method to get proper input in Postman console that what we input.
+
+    }
 }
