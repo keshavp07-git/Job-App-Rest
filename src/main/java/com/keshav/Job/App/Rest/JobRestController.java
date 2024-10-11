@@ -12,7 +12,7 @@ public class JobRestController {
     @Autowired
     private JobService service;
 
-    @GetMapping("jobPosts")
+    @GetMapping(path = "jobPosts" , produces = {"application/json"})
    // @ResponseBody // When we use Controller we have to use @Response body to solve view-resolver problem ,
    //Because @Controller work with view we use @Controller alone when we have views if not we ,
    //use ResponseBody and if we want to only data then use @RestController instead of @Controller.
@@ -27,7 +27,7 @@ public class JobRestController {
         return service.getPost(postId);
     }
 
-    @PostMapping("jobPosts") // We use @PostMapping to get data from client
+    @PostMapping(path="jobPosts",consumes = {"application/xml"}) // We use @PostMapping to get data from client
     public JobPost addPost(@RequestBody JobPost jobPost ){ // Create controller for addJob method
         // with @RequestBody it stores client data into object that we created here JobPost and object jobPost.
         service.addJob(jobPost); // Here we call service with addJob method and pass that object which all client data (jobPost).
