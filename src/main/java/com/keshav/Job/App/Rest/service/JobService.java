@@ -4,42 +4,65 @@ import com.keshav.Job.App.Rest.model.JobPost;
 import com.keshav.Job.App.Rest.repo.JobRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Service
 public class JobService {
 
+    //changes happened belong to Spring_Data_JPA  everything described there .
+
     @Autowired
     private JobRepo repo;
     public void addJob(JobPost jobPost){
-        repo.addJob(jobPost);
+        repo.save(jobPost);
 
-        //This logic is created to add data to repo with class JobPost and object of its jobPost
-        // then logic called and perform activity
 
     }
     public List<JobPost> getAllJob (){
-        return repo.getAllJobs();
+        return repo.findAll();
 
-        //This logic created to get all jobs from List that JobPost
     }
 
     public JobPost getPost(int postId){
-        return repo.getJob(postId);
-    } // This logic is created to return a single post means a single data
-    // from data model but it accepts int value which we will pass in path
+        return repo.findById(postId).orElse(new JobPost());
+    }
 
     public void updateJob(JobPost jobPost) {
-        repo.updateJob(jobPost);
+        repo.save(jobPost);
     }
-    //This logic is created to update repo with class JobPost and object of its jobPost
-    // then logic called and perform activity
+
 
     public void deleteJob(int postId) {
-        repo.deleteJob(postId);
-        //This logic is created to delete data from  repo with class JobPost and object of its jobPost
-        // then logic called and perform activity
+        repo.deleteById(postId);
+
+    }
+
+    public void load() {
+        // arrayList to store JobPost objects
+        // This method create all job post and them into Database , it happens just one time
+
+        List<JobPost> jobs =
+                new ArrayList<>(List.of(
+                        new JobPost(1, "Software Engineer", "Exciting opportunity for a skilled software engineer.", 3, List.of("Java", "Spring", "SQL")),
+                        new JobPost(2, "Data Scientist", "Join our data science team and work on cutting-edge projects.", 5, List.of("Python", "Machine Learning", "TensorFlow")),
+                        new JobPost(3, "Frontend Developer", "Create amazing user interfaces with our talented frontend team.", 2, List.of("JavaScript", "React", "CSS")),
+                        new JobPost(4, "Network Engineer", "Design and maintain our robust network infrastructure.", 4, List.of("Cisco", "Routing", "Firewalls")),
+                        new JobPost(5, "UX Designer", "Shape the user experience with your creative design skills.", 3, List.of("UI/UX Design", "Adobe XD", "Prototyping"))
+
+                ));
+
+        repo.saveAll(jobs);
+
+    }
+
+    public List<JobPost> search(String keyword) {
+        return repo.findByPostProfileContainingIgnoreCaseOrPostDescContainingIgnoreCase(keyword,keyword);
+        // Here it is the search method which call by Controller
+        // Which perform search in the repo as per its name
+        // This method take one parameter (keyword) at a time and perform search and give result.
     }
 }
