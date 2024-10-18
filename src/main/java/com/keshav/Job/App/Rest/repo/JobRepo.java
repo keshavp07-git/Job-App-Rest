@@ -7,14 +7,8 @@ import java.util.List;
 
 @Repository
 public interface JobRepo extends JpaRepository <JobPost , Integer> {
-    // Using Spring Data JPA for JobPost , it's type be Integer
-    //changes happened belong to Spring_Data_JPA  everything described there .
-    List<JobPost> findByPostProfileContainingIgnoreCaseOrPostDescContainingIgnoreCase(String postProfile, String postDesc);
 
-    // We create a method to find post profile and description with containing any letter
-    // Also it perform 2 search and pass parameter from our post in post it is postProfile and postDesc
-    // Both are String in JobPost so we declare as String both
-    //As it is done in Spring DQL
+    List<JobPost> findByPostProfileContainingIgnoreCaseOrPostDescContainingIgnoreCase(String postProfile, String postDesc);
  }
 
 

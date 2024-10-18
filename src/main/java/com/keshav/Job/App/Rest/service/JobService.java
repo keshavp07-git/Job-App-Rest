@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class JobService {
 
-    //changes happened belong to Spring_Data_JPA  everything described there .
+
 
     @Autowired
     private JobRepo repo;
@@ -42,8 +42,7 @@ public class JobService {
     }
 
     public void load() {
-        // arrayList to store JobPost objects
-        // This method create all job post and them into Database , it happens just one time
+
 
         List<JobPost> jobs =
                 new ArrayList<>(List.of(
@@ -61,8 +60,6 @@ public class JobService {
 
     public List<JobPost> search(String keyword) {
         return repo.findByPostProfileContainingIgnoreCaseOrPostDescContainingIgnoreCase(keyword,keyword);
-        // Here it is the search method which call by Controller
-        // Which perform search in the repo as per its name
-        // This method take one parameter (keyword) at a time and perform search and give result.
+
     }
 }

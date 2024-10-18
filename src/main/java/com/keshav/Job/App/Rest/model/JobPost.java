@@ -19,12 +19,10 @@ public class JobPost {
 
     @Id
     private int postId;
-
     private String postProfile;
     private String postDesc;
     private Integer reqExperience;
     private List<String> postTechStack;
 
-    // Every changes belongs Spring_Data_JPA , everything described there .
 
 }
