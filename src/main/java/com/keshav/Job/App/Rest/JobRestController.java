@@ -1,7 +1,9 @@
 package com.keshav.Job.App.Rest;
 import com.keshav.Job.App.Rest.model.JobPost;
 import com.keshav.Job.App.Rest.service.JobService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -11,6 +13,11 @@ public class JobRestController {
 
     @Autowired
     private JobService service;
+
+    @GetMapping("/csrf-token")
+    public CsrfToken getCsrfToken(HttpServletRequest request){
+        return (CsrfToken) request.getAttribute("_csrf");
+    }
 
     @GetMapping(path = "jobPosts" , produces = {"application/json"})
 
