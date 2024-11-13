@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 public class JobRestController {
 
     @Autowired
@@ -20,8 +19,6 @@ public class JobRestController {
     }
 
     @GetMapping(path = "jobPosts" , produces = {"application/json"})
-
-
     public List<JobPost> getAllJobs(){
         return service.getAllJob();
     }

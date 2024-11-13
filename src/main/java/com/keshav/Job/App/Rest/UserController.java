@@ -12,8 +12,15 @@ public class UserController {
     // Step-1 // To register user in DB (Controller)
     @Autowired
     private UserService service;
+
     @PostMapping("/register")
     public Users register(@RequestBody Users user){
         return service.register(user);
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody Users user){
+        System.out.println(user);
+        return service.verify(user);
     }
 }
