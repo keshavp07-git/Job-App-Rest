@@ -1,10 +1,10 @@
-package com.keshav.Job.App.Rest;
+package com.keshav.SpringSecurity;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class JobAppRestApplicationTests {
+class SpringSecurityApplicationTests {
 
 	@Test
 	void contextLoads() {

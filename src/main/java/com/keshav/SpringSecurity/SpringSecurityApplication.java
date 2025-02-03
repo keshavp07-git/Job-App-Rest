@@ -1,13 +1,13 @@
-package com.keshav.Job.App.Rest;
+package com.keshav.SpringSecurity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JobAppRestApplication {
+public class SpringSecurityApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JobAppRestApplication.class, args);
+		SpringApplication.run(SpringSecurityApplication.class, args);
 	}
 
 }
